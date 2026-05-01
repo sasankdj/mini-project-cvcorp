@@ -1,0 +1,7 @@
+2. Basics of Python
+   2.1 Variables
+   2.2 Data Types
+   2.3 Type Casting
+   2.4 Input and Output
+   2.5 Keywords and Identifiers
+   2.6 Comments in Python

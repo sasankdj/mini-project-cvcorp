@@ -1,0 +1,102 @@
+==============================
+MODULE 11: ADVANCED TOPICS
+==============================
+
+11.1 Multithreading
+--------------------
+Multithreading allows multiple threads to run concurrently.
+
+Used to improve performance.
+
+Example:
+import threading
+
+def task():
+    print("Thread running")
+
+t1 = threading.Thread(target=task)
+t1.start()
+
+Advantages:
+- Faster execution
+- Better CPU utilization
+
+--------------------------------
+
+11.2 Python Libraries
+---------------------
+Python has powerful libraries for various tasks.
+
+Popular libraries:
+
+1. NumPy:
+Used for numerical computations.
+
+2. Pandas:
+Used for data analysis.
+
+3. Matplotlib:
+Used for data visualization.
+
+4. TensorFlow / PyTorch:
+Used for Machine Learning
+
+--------------------------------
+
+11.3 Virtual Environments
+-------------------------
+Virtual environments isolate project dependencies.
+
+Command:
+python -m venv myenv
+
+Activate:
+Windows:
+myenv\Scripts\activate
+
+Purpose:
+- Avoid conflicts between projects
+- Manage dependencies
+
+--------------------------------
+
+11.4 Working with APIs
+----------------------
+APIs allow communication between applications.
+
+Python uses requests module.
+
+Example:
+import requests
+
+response = requests.get("https://api.example.com")
+print(response.json())
+
+--------------------------------
+
+11.5 Introduction to Automation
+-------------------------------
+Python is widely used for automation tasks.
+
+Examples:
+- File handling automation
+- Web scraping
+- Task scheduling
+
+Libraries:
+- selenium
+- beautifulsoup
+
+--------------------------------
+
+11.6 Best Practices in Python
+-----------------------------
+- Follow PEP 8 coding style
+- Use meaningful variable names
+- Write modular code
+- Handle exceptions properly
+- Use virtual environments
+
+--------------------------------
+
+END OF MODULE 11

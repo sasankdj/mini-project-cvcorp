@@ -1,0 +1,78 @@
+==============================
+MODULE 6: STRINGS
+==============================
+
+6.1 String Basics
+-----------------
+A string is a sequence of characters enclosed in quotes.
+
+Example:
+str = "Hello Python"
+
+Strings can be created using:
+- Single quotes (' ')
+- Double quotes (" ")
+- Triple quotes (''' ''' or """ """)
+
+--------------------------------
+
+6.2 String Indexing and Slicing
+--------------------------------
+Indexing is used to access characters in a string.
+
+Example:
+str = "Python"
+print(str[0])  # P
+
+Slicing is used to extract a part of the string.
+
+Syntax:
+str[start:end]
+
+Example:
+print(str[0:3])  # Pyt
+
+--------------------------------
+
+6.3 String Operations
+---------------------
+Common operations:
+- Concatenation (+)
+- Repetition (*)
+- Membership (in, not in)
+
+Example:
+a = "Hello"
+b = "World"
+print(a + b)
+
+--------------------------------
+
+6.4 String Methods
+------------------
+Python provides many built-in string methods.
+
+Examples:
+- upper()
+- lower()
+- strip()
+- replace()
+- split()
+
+--------------------------------
+
+6.5 Formatting Strings
+----------------------
+Used to insert values into strings.
+
+Methods:
+1. f-strings:
+name = "Sasank"
+print(f"Hello {name}")
+
+2. format():
+print("Hello {}".format(name))
+
+--------------------------------
+
+END OF MODULE 6

@@ -1,0 +1,8 @@
+2. Basics of Java
+   2.1 Variables
+   2.2 Data Types
+   2.3 Type Casting
+   2.4 Operators
+   2.5 Keywords
+   2.6 Input/Output (Scanner, System.out)
+   2.7 Comments

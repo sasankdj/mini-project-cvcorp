@@ -1,0 +1,103 @@
+========================================
+MODULE 4: OBJECT-ORIENTED PROGRAMMING
+========================================
+
+4.1 Class
+----------
+A class is a blueprint for creating objects.
+
+Example:
+class Student {
+    int id;
+}
+
+--------------------------------
+
+4.2 Object
+-----------
+An object is an instance of a class.
+
+Example:
+Student s = new Student();
+
+--------------------------------
+
+4.3 Constructor
+----------------
+Special method used to initialize objects.
+Same name as class, no return type.
+
+Example:
+class Student {
+    Student() {
+        System.out.println("Constructor called");
+    }
+}
+
+--------------------------------
+
+4.4 this Keyword
+----------------
+Refers to current object.
+
+Example:
+class Student {
+    int id;
+    void setId(int id) {
+        this.id = id;
+    }
+}
+
+--------------------------------
+
+4.5 Encapsulation
+-----------------
+Wrapping data and methods together.
+Achieved using private variables + getters/setters.
+
+--------------------------------
+
+4.6 Inheritance
+---------------
+Allows one class to acquire properties of another.
+
+Example:
+class A {}
+class B extends A {}
+
+--------------------------------
+
+4.7 Polymorphism
+----------------
+Same method name, different behavior.
+
+Types:
+- Method Overloading
+- Method Overriding
+
+--------------------------------
+
+4.8 Abstraction
+---------------
+Hiding implementation details.
+
+Using:
+- Abstract class
+- Interface
+
+--------------------------------
+
+4.9 Interface
+--------------
+Contains abstract methods.
+Used for full abstraction.
+
+--------------------------------
+
+4.10 super Keyword
+------------------
+Refers to parent class.
+
+--------------------------------
+
+END OF MODULE 4

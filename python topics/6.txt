@@ -1,0 +1,6 @@
+6. Strings
+   6.1 String Basics
+   6.2 String Indexing and Slicing
+   6.3 String Operations
+   6.4 String Methods
+   6.5 Formatting Strings

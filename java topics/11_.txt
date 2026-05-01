@@ -1,0 +1,108 @@
+========================================
+MODULE 11: MULTITHREADING
+========================================
+
+11.1 Introduction to Multithreading
+-----------------------------------
+Multithreading allows multiple tasks to run concurrently.
+
+Benefits:
+- Better CPU utilization
+- Faster execution
+- Efficient resource usage
+
+--------------------------------
+
+11.2 Thread Class
+-----------------
+Create thread by extending Thread class.
+
+Example:
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running");
+    }
+}
+
+MyThread t = new MyThread();
+t.start();
+
+--------------------------------
+
+11.3 Runnable Interface
+------------------------
+Another way to create thread.
+
+Example:
+class MyThread implements Runnable {
+    public void run() {
+        System.out.println("Running");
+    }
+}
+
+Thread t = new Thread(new MyThread());
+t.start();
+
+--------------------------------
+
+11.4 Thread Lifecycle
+----------------------
+States:
+- New
+- Runnable
+- Running
+- Waiting/Blocked
+- Terminated
+
+--------------------------------
+
+11.5 Thread Methods
+-------------------
+- start() → starts thread
+- run() → contains code
+- sleep(ms) → pause thread
+- join() → wait for thread
+- isAlive() → check status
+
+--------------------------------
+
+11.6 Synchronization
+--------------------
+Used to avoid data inconsistency when multiple threads access shared data.
+
+Example:
+synchronized void display() {
+    // critical section
+}
+
+--------------------------------
+
+11.7 Inter-thread Communication
+-------------------------------
+Threads communicate using:
+- wait()
+- notify()
+- notifyAll()
+
+Used in producer-consumer problems.
+
+--------------------------------
+
+11.8 Thread Priority
+--------------------
+Each thread has priority:
+- MIN_PRIORITY (1)
+- NORM_PRIORITY (5)
+- MAX_PRIORITY (10)
+
+--------------------------------
+
+11.9 Advantages of Multithreading
+---------------------------------
+- Improves performance
+- Efficient multitasking
+- Better responsiveness
+
+--------------------------------
+
+END OF MODULE 11

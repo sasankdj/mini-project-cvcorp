@@ -1,0 +1,112 @@
+==============================
+MODULE 8: MODULES AND PACKAGES
+==============================
+
+8.1 Modules
+------------
+A module is a file containing Python code (functions, variables, classes).
+
+It helps in organizing code into reusable components.
+
+Example:
+# math module
+import math
+print(math.sqrt(16))
+
+User-defined module:
+# file: mymodule.py
+def greet():
+    print("Hello")
+
+# main file
+import mymodule
+mymodule.greet()
+
+Advantages:
+- Code reusability
+- Better organization
+- Avoids duplication
+
+--------------------------------
+
+8.2 Import Statements
+---------------------
+Different ways to import modules:
+
+1. import module
+import math
+
+2. import module as alias
+import math as m
+
+3. from module import specific
+from math import sqrt
+
+4. from module import *
+(Not recommended due to namespace conflicts)
+
+Example:
+from math import sqrt
+print(sqrt(25))
+
+--------------------------------
+
+8.3 Built-in Modules
+--------------------
+Python provides many built-in modules.
+
+Examples:
+- math → mathematical functions
+- random → random numbers
+- datetime → date and time
+- sys → system-related functions
+- os → operating system interaction
+
+Example:
+import random
+print(random.randint(1,10))
+
+--------------------------------
+
+8.4 User-defined Modules
+------------------------
+Modules created by the programmer.
+
+Steps:
+1. Create a .py file
+2. Define functions/classes
+3. Import in another file
+
+Example:
+# calc.py
+def add(a, b):
+    return a + b
+
+# main.py
+import calc
+print(calc.add(2,3))
+
+--------------------------------
+
+8.5 Packages
+-------------
+A package is a collection of modules in a directory.
+
+It contains a special file:
+__init__.py (optional in latest versions)
+
+Structure:
+mypackage/
+    module1.py
+    module2.py
+
+Usage:
+import mypackage.module1
+
+Advantages:
+- Organizes large projects
+- Avoids naming conflicts
+
+--------------------------------
+
+END OF MODULE 8

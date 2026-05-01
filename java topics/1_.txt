@@ -1,0 +1,98 @@
+==============================
+MODULE 1: INTRODUCTION TO JAVA
+==============================
+
+1.1 What is Java
+----------------
+Java is a high-level, object-oriented programming language developed by Sun Microsystems (now owned by Oracle).
+It is platform-independent, meaning "Write Once, Run Anywhere" (WORA).
+
+Java programs are compiled into bytecode, which runs on the Java Virtual Machine (JVM).
+
+Key Points:
+- Simple and easy to learn
+- Object-Oriented
+- Platform Independent
+- Secure and Robust
+
+--------------------------------
+
+1.2 History of Java
+-------------------
+Java was developed by James Gosling and his team at Sun Microsystems in 1995.
+
+Originally called "Oak", it was later renamed to Java.
+
+Important milestones:
+- 1991: Development started
+- 1995: Official release
+- 2010: Acquired by Oracle
+
+--------------------------------
+
+1.3 Features of Java
+--------------------
+1. Platform Independent
+2. Object-Oriented
+3. Secure
+4. Robust
+5. Portable
+6. Multithreaded
+7. High Performance (via JIT)
+8. Distributed
+9. Dynamic
+
+--------------------------------
+
+1.4 JVM, JRE, JDK
+-----------------
+
+JVM (Java Virtual Machine):
+- Executes Java bytecode
+- Provides platform independence
+
+JRE (Java Runtime Environment):
+- Contains JVM + libraries needed to run Java programs
+
+JDK (Java Development Kit):
+- Contains JRE + development tools (compiler, debugger)
+
+Summary:
+JDK = JRE + Development Tools
+JRE = JVM + Libraries
+
+--------------------------------
+
+1.5 Java Program Structure
+--------------------------
+
+Basic structure of a Java program:
+
+class ClassName {
+    public static void main(String[] args) {
+        // code here
+    }
+}
+
+Explanation:
+- class: defines a class
+- main(): entry point of program
+- public: access modifier
+- static: allows method to run without object
+- void: no return value
+
+--------------------------------
+
+1.6 Compilation & Execution Process
+-----------------------------------
+
+Step 1: Write code in .java file
+Step 2: Compile using javac → generates .class file (bytecode)
+Step 3: JVM executes bytecode
+
+Flow:
+.java file → javac → .class file → JVM → Output
+
+--------------------------------
+
+END OF MODULE 1

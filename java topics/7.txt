@@ -1,0 +1,8 @@
+7. Exception Handling
+   7.1 Introduction to Exceptions
+   7.2 Types of Exceptions
+   7.3 try-catch
+   7.4 finally block
+   7.5 throw keyword
+   7.6 throws keyword
+   7.7 Custom Exceptions

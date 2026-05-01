@@ -1,0 +1,54 @@
+========================================
+MODULE 6: STRINGS
+========================================
+
+6.1 String Class
+----------------
+String is a sequence of characters.
+Strings are immutable (cannot be changed).
+
+Example:
+String s = "Hello";
+
+--------------------------------
+
+6.2 String Methods
+------------------
+Common methods:
+
+length()       → returns length  
+charAt(i)      → returns character at index  
+substring()    → extracts part of string  
+equals()       → compares strings  
+toUpperCase()  → converts to uppercase  
+toLowerCase()  → converts to lowercase  
+
+--------------------------------
+
+6.3 Immutable Strings
+---------------------
+Once created, string values cannot be changed.
+
+Example:
+String s = "Hello";
+s = s + " World"; // creates new object
+
+--------------------------------
+
+6.4 StringBuilder
+-----------------
+Mutable string (can change).
+
+Example:
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(" World");
+
+--------------------------------
+
+6.5 StringBuffer
+----------------
+Similar to StringBuilder but thread-safe.
+
+--------------------------------
+
+END OF MODULE 6

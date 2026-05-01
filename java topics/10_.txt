@@ -1,0 +1,113 @@
+========================================
+MODULE 10: FILE HANDLING
+========================================
+
+10.1 Introduction to File Handling
+----------------------------------
+File handling is used to store and retrieve data permanently from files.
+
+Types of files:
+- Text files (.txt)
+- Binary files (.dat)
+
+--------------------------------
+
+10.2 File Class
+----------------
+Used to create, delete, and get information about files.
+
+Example:
+File file = new File("data.txt");
+
+Common Methods:
+- createNewFile()
+- exists()
+- delete()
+- getName()
+- length()
+
+--------------------------------
+
+10.3 Writing to File
+---------------------
+Using FileWriter and BufferedWriter.
+
+Example:
+FileWriter fw = new FileWriter("data.txt");
+fw.write("Hello Java");
+fw.close();
+
+Using BufferedWriter:
+BufferedWriter bw = new BufferedWriter(new FileWriter("data.txt"));
+bw.write("Hello");
+bw.close();
+
+--------------------------------
+
+10.4 Reading from File
+----------------------
+Using FileReader and BufferedReader.
+
+Example:
+BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+String line;
+while((line = br.readLine()) != null) {
+    System.out.println(line);
+}
+br.close();
+
+--------------------------------
+
+10.5 File Streams
+-----------------
+Used for binary data.
+
+Types:
+- FileInputStream (read)
+- FileOutputStream (write)
+
+--------------------------------
+
+10.6 Serialization
+------------------
+Converting object into byte stream.
+
+Steps:
+1. Implement Serializable interface
+2. Use ObjectOutputStream
+
+Example:
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("file.dat"));
+oos.writeObject(obj);
+
+--------------------------------
+
+10.7 Deserialization
+--------------------
+Converting byte stream back to object.
+
+Example:
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream("file.dat"));
+Object obj = ois.readObject();
+
+--------------------------------
+
+10.8 Exception Handling in File I/O
+-----------------------------------
+File operations may throw:
+- IOException
+- FileNotFoundException
+
+Always use try-catch or throws.
+
+--------------------------------
+
+10.9 Advantages of File Handling
+--------------------------------
+- Permanent storage
+- Data persistence
+- Useful for logs, LMS data, user records
+
+--------------------------------
+
+END OF MODULE 10

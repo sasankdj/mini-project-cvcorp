@@ -1,0 +1,6 @@
+6. Strings
+   6.1 String Class
+   6.2 String Methods
+   6.3 Immutable Strings
+   6.4 StringBuilder
+   6.5 StringBuffer

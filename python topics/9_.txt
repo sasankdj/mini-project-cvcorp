@@ -1,0 +1,104 @@
+==============================
+MODULE 9: FILE HANDLING
+==============================
+
+9.1 Opening Files
+-----------------
+Files are opened using open() function.
+
+Syntax:
+open(filename, mode)
+
+Modes:
+- 'r' → read (default)
+- 'w' → write (overwrite)
+- 'a' → append
+- 'x' → create new file
+- 'b' → binary mode
+
+Example:
+f = open("file.txt", "r")
+
+--------------------------------
+
+9.2 Reading Files
+-----------------
+Methods to read data:
+
+1. read() → reads entire file
+2. readline() → reads one line
+3. readlines() → returns list of lines
+
+Example:
+f = open("file.txt", "r")
+data = f.read()
+print(data)
+f.close()
+
+--------------------------------
+
+9.3 Writing Files
+-----------------
+Used to write data into a file.
+
+Example:
+f = open("file.txt", "w")
+f.write("Hello Python")
+f.close()
+
+Note:
+'w' mode overwrites existing content.
+
+--------------------------------
+
+9.4 File Modes
+--------------
+Different modes control file operations.
+
+'r' → read only  
+'w' → write (overwrite)  
+'a' → append  
+'r+' → read + write  
+
+Binary modes:
+'rb', 'wb'
+
+--------------------------------
+
+9.5 Working with Files Safely
+-----------------------------
+Using with statement ensures proper closing.
+
+Example:
+with open("file.txt", "r") as f:
+    data = f.read()
+
+Advantages:
+- Automatically closes file
+- Prevents memory leaks
+
+--------------------------------
+
+9.6 Working with Directories
+----------------------------
+Using os module to interact with directories.
+
+Example:
+import os
+
+os.mkdir("newfolder")
+os.getcwd()
+os.listdir()
+
+--------------------------------
+
+9.7 File Handling Best Practices
+--------------------------------
+- Always close files or use with
+- Handle exceptions using try-except
+- Use proper file modes
+- Avoid hardcoding file paths
+
+--------------------------------
+
+END OF MODULE 9

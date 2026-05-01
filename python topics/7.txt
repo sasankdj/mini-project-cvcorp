@@ -1,0 +1,6 @@
+7. Exception Handling
+   7.1 Errors vs Exceptions
+   7.2 Try-Except Block
+   7.3 Multiple Exceptions
+   7.4 Finally Block
+   7.5 Raising Exceptions

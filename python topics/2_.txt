@@ -1,0 +1,94 @@
+==============================
+MODULE 2: BASICS OF PYTHON
+==============================
+
+2.1 Variables
+--------------
+Variables are used to store data values in Python.
+
+Python is dynamically typed, so we don’t need to declare variable types explicitly.
+
+Example:
+x = 10
+name = "Sasank"
+
+Rules for variables:
+- Must start with a letter or underscore
+- Cannot start with a number
+- Case-sensitive
+
+--------------------------------
+
+2.2 Data Types
+---------------
+Python supports various built-in data types:
+
+1. int → Integer values (10)
+2. float → Decimal values (10.5)
+3. str → String values ("Hello")
+4. bool → True or False
+5. list → Ordered collection [1,2,3]
+6. tuple → Immutable collection (1,2,3)
+7. dict → Key-value pairs {"a":1}
+
+--------------------------------
+
+2.3 Type Casting
+----------------
+Type casting is used to convert one data type into another.
+
+Example:
+x = "10"
+y = int(x)
+
+Types:
+- int()
+- float()
+- str()
+
+--------------------------------
+
+2.4 Input and Output
+--------------------
+Input is taken using input() function.
+
+Example:
+name = input("Enter name: ")
+
+Output is displayed using print() function.
+
+Example:
+print("Hello", name)
+
+--------------------------------
+
+2.5 Keywords and Identifiers
+----------------------------
+Keywords are reserved words in Python.
+
+Examples:
+if, else, while, for, True, False
+
+Identifiers are names given to variables, functions, etc.
+
+Rules:
+- Cannot use keywords
+- Must follow naming rules
+
+--------------------------------
+
+2.6 Comments in Python
+----------------------
+Comments are used to explain code.
+
+Types:
+1. Single-line:
+# This is a comment
+
+2. Multi-line:
+''' This is
+multi-line comment '''
+
+--------------------------------
+
+END OF MODULE 2

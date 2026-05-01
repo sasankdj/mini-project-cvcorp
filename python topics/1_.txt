@@ -1,0 +1,104 @@
+==============================
+MODULE 1: INTRODUCTION TO PYTHON
+==============================
+
+1.1 What is Python
+------------------
+Python is a high-level, interpreted, and object-oriented programming language created by Guido van Rossum.
+
+It is known for its simplicity and readability, making it ideal for beginners and professionals.
+
+Python supports multiple programming paradigms such as:
+- Procedural
+- Object-Oriented
+- Functional
+
+Python programs are executed line by line using an interpreter.
+
+Key Points:
+- Easy to learn and use
+- Interpreted language
+- Platform Independent
+- Large standard library
+
+--------------------------------
+
+1.2 History of Python
+---------------------
+Python was developed by Guido van Rossum and released in 1991.
+
+It was designed to be simple and readable.
+
+Important milestones:
+- 1991: Initial release
+- 2000: Python 2.0 introduced
+- 2008: Python 3.0 released (major update)
+- Present: Widely used in AI, ML, Web, Automation
+
+--------------------------------
+
+1.3 Features of Python
+----------------------
+1. Simple and readable syntax
+2. Interpreted language
+3. Dynamically typed
+4. Platform independent
+5. Large standard library
+6. Open-source
+7. Object-Oriented
+8. Extensible and embeddable
+9. Supports multiple paradigms
+
+--------------------------------
+
+1.4 Python Interpreter
+----------------------
+Python uses an interpreter to execute code line by line.
+
+Unlike compiled languages, Python does not require compilation before execution.
+
+Example:
+>>> print("Hello Python")
+
+Interpreter types:
+- CPython (default)
+- Jython
+- IronPython
+
+--------------------------------
+
+1.5 Python Program Structure
+----------------------------
+
+Basic structure of a Python program:
+
+print("Hello World")
+
+Explanation:
+- No need for class or main method
+- Indentation is important
+- Statements are executed line by line
+
+Example with function:
+
+def main():
+    print("Hello Python")
+
+main()
+
+--------------------------------
+
+1.6 Execution Process
+---------------------
+
+Step 1: Write code in .py file
+Step 2: Python interpreter reads code
+Step 3: Converts into bytecode (.pyc)
+Step 4: Python Virtual Machine (PVM) executes bytecode
+
+Flow:
+.py file → Interpreter → Bytecode → PVM → Output
+
+--------------------------------
+
+END OF MODULE 1

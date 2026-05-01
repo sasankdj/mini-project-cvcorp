@@ -1,0 +1,84 @@
+==============================
+MODULE 3: CONTROL STATEMENTS
+==============================
+
+3.1 Conditional Statements
+--------------------------
+Used to make decisions in programs.
+
+Syntax:
+if condition:
+    statement
+elif condition:
+    statement
+else:
+    statement
+
+Example:
+x = 10
+if x > 5:
+    print("Greater")
+
+--------------------------------
+
+3.2 Nested if
+-------------
+An if statement inside another if statement.
+
+Example:
+x = 10
+if x > 5:
+    if x < 20:
+        print("Between 5 and 20")
+
+--------------------------------
+
+3.3 Loops
+----------
+Loops are used to repeat statements.
+
+Types:
+
+1. for loop:
+for i in range(5):
+    print(i)
+
+2. while loop:
+while x > 0:
+    x -= 1
+
+--------------------------------
+
+3.4 Break Statement
+-------------------
+Break is used to exit the loop.
+
+Example:
+for i in range(5):
+    if i == 3:
+        break
+
+--------------------------------
+
+3.5 Continue Statement
+----------------------
+Continue skips the current iteration.
+
+Example:
+for i in range(5):
+    if i == 3:
+        continue
+
+--------------------------------
+
+3.6 Pass Statement
+------------------
+Pass is a null statement (does nothing).
+
+Example:
+if x > 5:
+    pass
+
+--------------------------------
+
+END OF MODULE 3

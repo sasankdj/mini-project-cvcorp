@@ -1,0 +1,13 @@
+What is Java?
+A. Language
+B. OS
+C. Hardware
+D. Browser
+A
+
+What is JVM?
+A. Java Virtual Machine
+B. Java Variable Method
+C. Just Value Machine
+D. None
+A

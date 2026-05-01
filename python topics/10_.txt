@@ -1,0 +1,117 @@
+==============================
+MODULE 10: OBJECT-ORIENTED PROGRAMMING
+==============================
+
+10.1 Classes and Objects
+------------------------
+Object-Oriented Programming (OOP) is a paradigm based on objects and classes.
+
+Class:
+A blueprint for creating objects.
+
+Object:
+An instance of a class.
+
+Example:
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+s1 = Student("Sasank")
+print(s1.name)
+
+--------------------------------
+
+10.2 Constructors
+-----------------
+A constructor is a special method used to initialize objects.
+
+In Python, __init__() is the constructor.
+
+Example:
+class Car:
+    def __init__(self, brand):
+        self.brand = brand
+
+c = Car("BMW")
+
+Types:
+- Default constructor
+- Parameterized constructor
+
+--------------------------------
+
+10.3 Inheritance
+----------------
+Inheritance allows one class to inherit properties from another.
+
+Syntax:
+class Child(Parent):
+
+Example:
+class Animal:
+    def speak(self):
+        print("Sound")
+
+class Dog(Animal):
+    def bark(self):
+        print("Bark")
+
+--------------------------------
+
+10.4 Polymorphism
+-----------------
+Polymorphism means "many forms".
+
+Same method behaves differently.
+
+Example (method overriding):
+class A:
+    def show(self):
+        print("A")
+
+class B(A):
+    def show(self):
+        print("B")
+
+--------------------------------
+
+10.5 Encapsulation
+------------------
+Encapsulation means binding data and methods together.
+
+Data hiding is achieved using private variables.
+
+Example:
+class Test:
+    def __init__(self):
+        self.__x = 10
+
+--------------------------------
+
+10.6 Abstraction
+----------------
+Abstraction means hiding implementation details.
+
+Achieved using abstract classes.
+
+Example:
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+--------------------------------
+
+10.7 Advantages of OOP
+----------------------
+- Code reusability
+- Better organization
+- Easier maintenance
+- Real-world modeling
+
+--------------------------------
+
+END OF MODULE 10

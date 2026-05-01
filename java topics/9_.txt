@@ -1,0 +1,159 @@
+========================================
+MODULE 9: COLLECTIONS FRAMEWORK
+========================================
+
+9.1 Introduction
+----------------
+Collections Framework provides ready-made classes to store and manipulate data dynamically.
+
+Benefits:
+- Dynamic size
+- Built-in algorithms
+- Easy data manipulation
+
+--------------------------------
+
+9.2 Collection Hierarchy
+------------------------
+Main Interfaces:
+- Collection (root interface)
+- List
+- Set
+- Queue
+- Map (separate hierarchy)
+
+--------------------------------
+
+9.3 List Interface
+------------------
+Allows duplicate elements and maintains order.
+
+Implementations:
+
+1. ArrayList
+   - Dynamic array
+   - Fast access
+   - Slow insertion/deletion
+
+   Example:
+   ArrayList<Integer> list = new ArrayList<>();
+   list.add(10);
+
+2. LinkedList
+   - Doubly linked list
+   - Fast insertion/deletion
+
+3. Vector
+   - Same as ArrayList but synchronized
+
+--------------------------------
+
+9.4 Set Interface
+-----------------
+Does not allow duplicate elements.
+
+Implementations:
+
+1. HashSet
+   - Unordered
+   - Fast operations
+
+2. TreeSet
+   - Sorted order
+   - Slower than HashSet
+
+--------------------------------
+
+9.5 Map Interface
+-----------------
+Stores key-value pairs.
+
+Features:
+- Keys must be unique
+- Values can be duplicate
+
+Implementations:
+
+1. HashMap
+   - Unordered
+   - Fast access
+
+   Example:
+   HashMap<Integer, String> map = new HashMap<>();
+   map.put(1, "Java");
+
+2. TreeMap
+   - Sorted keys
+
+--------------------------------
+
+9.6 Iterator
+------------
+Used to traverse collections.
+
+Example:
+Iterator<Integer> it = list.iterator();
+while(it.hasNext()) {
+    System.out.println(it.next());
+}
+
+--------------------------------
+
+9.7 Comparable Interface
+------------------------
+Used to define natural sorting.
+
+Method:
+compareTo()
+
+Example:
+class Student implements Comparable<Student> {
+    public int compareTo(Student s) {
+        return this.id - s.id;
+    }
+}
+
+--------------------------------
+
+9.8 Comparator Interface
+------------------------
+Used to define custom sorting.
+
+Method:
+compare()
+
+Example:
+Collections.sort(list, new Comparator<Student>() {
+    public int compare(Student s1, Student s2) {
+        return s1.id - s2.id;
+    }
+});
+
+--------------------------------
+
+9.9 Difference: List vs Set vs Map
+----------------------------------
+
+List:
+- Allows duplicates
+- Maintains order
+
+Set:
+- No duplicates
+- No guaranteed order
+
+Map:
+- Key-value pairs
+- Unique keys
+
+--------------------------------
+
+9.10 Advantages of Collections
+------------------------------
+- Dynamic data handling
+- Reduced coding effort
+- High performance
+
+--------------------------------
+
+END OF MODULE 9

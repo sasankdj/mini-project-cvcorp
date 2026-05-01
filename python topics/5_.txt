@@ -1,0 +1,77 @@
+==============================
+MODULE 5: DATA STRUCTURES
+==============================
+
+5.1 Lists
+----------
+Lists are ordered and mutable collections.
+
+Example:
+arr = [1, 2, 3]
+
+Operations:
+- append()
+- remove()
+- pop()
+
+--------------------------------
+
+5.2 Tuples
+-----------
+Tuples are ordered and immutable collections.
+
+Example:
+t = (1, 2, 3)
+
+--------------------------------
+
+5.3 Dictionaries
+----------------
+Dictionaries store key-value pairs.
+
+Example:
+d = {"name": "Sasank", "age": 20}
+
+Operations:
+- keys()
+- values()
+- items()
+
+--------------------------------
+
+5.4 Sets
+---------
+Sets store unique elements.
+
+Example:
+s = {1, 2, 3}
+
+Operations:
+- add()
+- remove()
+
+--------------------------------
+
+5.5 Operations on Data Structures
+---------------------------------
+Common operations:
+- Traversal
+- Searching
+- Updating
+- Deleting
+
+--------------------------------
+
+5.6 List Comprehension
+----------------------
+A concise way to create lists.
+
+Syntax:
+[expression for item in iterable]
+
+Example:
+squares = [x*x for x in range(5)]
+
+--------------------------------
+
+END OF MODULE 5

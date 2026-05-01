@@ -1,0 +1,101 @@
+========================================
+MODULE 8: JAVA PACKAGES
+========================================
+
+8.1 What is a Package
+----------------------
+A package is a namespace that organizes classes and interfaces into groups.
+
+Purpose:
+- Avoid naming conflicts
+- Improve code reusability
+- Provide access protection
+
+Example:
+java.util, java.lang, java.io
+
+--------------------------------
+
+8.2 Built-in Packages
+----------------------
+Java provides many built-in packages.
+
+Important Packages:
+- java.lang → basic classes (String, Math, System)
+- java.util → utilities (Scanner, ArrayList)
+- java.io → input/output classes
+- java.net → networking
+- java.sql → database connectivity
+
+Note:
+java.lang is automatically imported.
+
+Example:
+import java.util.Scanner;
+
+--------------------------------
+
+8.3 User-defined Packages
+-------------------------
+You can create your own package using 'package' keyword.
+
+Syntax:
+package mypackage;
+
+Example:
+package mypack;
+
+public class Test {
+    public void show() {
+        System.out.println("Hello");
+    }
+}
+
+Compilation:
+javac -d . Test.java
+
+--------------------------------
+
+8.4 Import Statement
+--------------------
+Used to access classes from another package.
+
+Types:
+1. Single class import:
+   import java.util.Scanner;
+
+2. Entire package:
+   import java.util.*;
+
+--------------------------------
+
+8.5 Access Modifiers
+--------------------
+Control visibility of classes, methods, variables.
+
+Types:
+
+1. public
+   - Accessible everywhere
+
+2. private
+   - Accessible only within same class
+
+3. protected
+   - Accessible within package + subclasses
+
+4. default (no keyword)
+   - Accessible within same package
+
+--------------------------------
+
+8.6 Advantages of Packages
+--------------------------
+- Code organization
+- Reusability
+- Security (access control)
+- Avoid naming conflicts
+
+--------------------------------
+
+END OF MODULE 8

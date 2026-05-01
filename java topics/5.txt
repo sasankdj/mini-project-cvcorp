@@ -1,0 +1,7 @@
+5. Arrays
+   5.1 One-Dimensional Arrays
+   5.2 Two-Dimensional Arrays
+   5.3 Jagged Arrays
+   5.4 Array Traversal
+   5.5 Searching in Arrays
+   5.6 Sorting in Arrays

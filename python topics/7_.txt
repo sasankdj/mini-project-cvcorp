@@ -1,0 +1,67 @@
+==============================
+MODULE 7: EXCEPTION HANDLING
+==============================
+
+7.1 Errors vs Exceptions
+------------------------
+Errors are problems in a program that prevent execution.
+
+Exceptions are runtime errors that can be handled.
+
+Example:
+Division by zero is an exception.
+
+--------------------------------
+
+7.2 Try-Except Block
+--------------------
+Used to handle exceptions.
+
+Syntax:
+try:
+    # risky code
+except:
+    # handling code
+
+Example:
+try:
+    x = 10 / 0
+except:
+    print("Error occurred")
+
+--------------------------------
+
+7.3 Multiple Exceptions
+-----------------------
+We can handle multiple exceptions separately.
+
+Example:
+try:
+    x = int("abc")
+except ValueError:
+    print("Invalid input")
+
+--------------------------------
+
+7.4 Finally Block
+-----------------
+The finally block always executes.
+
+Example:
+try:
+    x = 10
+finally:
+    print("Done")
+
+--------------------------------
+
+7.5 Raising Exceptions
+----------------------
+We can raise exceptions manually using raise.
+
+Example:
+raise ValueError("Invalid value")
+
+--------------------------------
+
+END OF MODULE 7

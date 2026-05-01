@@ -1,0 +1,6 @@
+9. File Handling
+   9.1 Opening Files
+   9.2 Reading Files
+   9.3 Writing Files
+   9.4 File Modes
+   9.5 Working with Directories

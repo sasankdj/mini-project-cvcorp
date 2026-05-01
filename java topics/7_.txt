@@ -1,0 +1,67 @@
+========================================
+MODULE 7: EXCEPTION HANDLING
+========================================
+
+7.1 Introduction to Exceptions
+------------------------------
+An exception is an error that occurs during runtime.
+
+--------------------------------
+
+7.2 Types of Exceptions
+-----------------------
+1. Checked Exceptions (compile-time)
+   Example: IOException
+
+2. Unchecked Exceptions (runtime)
+   Example: ArithmeticException, NullPointerException
+
+--------------------------------
+
+7.3 try-catch
+--------------
+Used to handle exceptions.
+
+Syntax:
+try {
+    // risky code
+} catch(Exception e) {
+    // handling code
+}
+
+--------------------------------
+
+7.4 finally Block
+-----------------
+Always executes (whether exception occurs or not).
+
+--------------------------------
+
+7.5 throw Keyword
+-----------------
+Used to explicitly throw an exception.
+
+Example:
+throw new ArithmeticException();
+
+--------------------------------
+
+7.6 throws Keyword
+------------------
+Declares exceptions in method signature.
+
+Example:
+void test() throws IOException {}
+
+--------------------------------
+
+7.7 Custom Exceptions
+---------------------
+User-defined exceptions.
+
+Example:
+class MyException extends Exception {}
+
+--------------------------------
+
+END OF MODULE 7

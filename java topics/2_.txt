@@ -1,0 +1,125 @@
+========================================
+MODULE 2: BASICS OF JAVA
+========================================
+
+2.1 Variables
+--------------
+Variables are containers used to store data in memory.
+
+Syntax:
+datatype variableName = value;
+
+Example:
+int a = 10;
+
+Types:
+- Local variables
+- Instance variables
+- Static variables
+
+--------------------------------
+
+2.2 Data Types
+---------------
+Defines the type of data a variable can hold.
+
+Primitive Data Types:
+- int (integer)
+- float (decimal)
+- double (large decimal)
+- char (single character)
+- boolean (true/false)
+- byte, short, long
+
+Non-Primitive:
+- String
+- Arrays
+- Classes
+
+--------------------------------
+
+2.3 Type Casting
+----------------
+Converting one data type into another.
+
+1. Implicit Casting (Widening)
+   int → double
+   Example:
+   int a = 10;
+   double b = a;
+
+2. Explicit Casting (Narrowing)
+   double → int
+   Example:
+   double a = 10.5;
+   int b = (int) a;
+
+--------------------------------
+
+2.4 Operators
+--------------
+Used to perform operations on variables.
+
+1. Arithmetic:
+   +, -, *, /, %
+
+2. Relational:
+   ==, !=, >, <, >=, <=
+
+3. Logical:
+   &&, ||, !
+
+4. Assignment:
+   =, +=, -=
+
+5. Unary:
+   ++, --
+
+--------------------------------
+
+2.5 Keywords
+-------------
+Reserved words in Java with special meaning.
+
+Examples:
+int, class, public, static, void, if, else, return
+
+Rules:
+- Cannot be used as variable names
+- Always lowercase
+
+--------------------------------
+
+2.6 Input and Output
+--------------------
+Input:
+Using Scanner class
+
+Example:
+import java.util.Scanner;
+Scanner sc = new Scanner(System.in);
+int a = sc.nextInt();
+
+Output:
+System.out.println("Hello");
+
+--------------------------------
+
+2.7 Comments
+-------------
+Used to explain code.
+
+Types:
+1. Single-line:
+   // This is comment
+
+2. Multi-line:
+   /* This is
+      multi-line comment */
+
+3. Documentation:
+/** Used for documentation */
+
+--------------------------------
+
+END OF MODULE 2

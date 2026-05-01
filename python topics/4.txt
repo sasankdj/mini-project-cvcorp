@@ -1,0 +1,7 @@
+4. Functions
+   4.1 Function Definition
+   4.2 Function Arguments
+   4.3 Return Statement
+   4.4 Lambda Functions
+   4.5 Recursion
+   4.6 Built-in Functions
