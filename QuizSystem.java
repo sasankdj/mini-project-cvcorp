@@ -143,6 +143,21 @@ class ConsoleUtils {
         System.out.println(CYAN + "=".repeat(width) + RESET);
     }
     
+    // Loader animation
+    public static void showLoader(String message, int duration) throws InterruptedException {
+        String[] frames = {"|", "/", "-", "\\"};
+        long startTime = System.currentTimeMillis();
+        int frameIndex = 0;
+        
+        System.out.print(message);
+        while (System.currentTimeMillis() - startTime < duration) {
+            System.out.print("\r" + message + " " + frames[frameIndex % frames.length]);
+            frameIndex++;
+            Thread.sleep(100);
+        }
+        System.out.print("\r" + message + " Done!     \n");
+    }
+    
     // Animated scroll effect
     public static void scrollUp(int lines) throws InterruptedException {
         for (int i = 0; i < lines; i++) {
@@ -176,6 +191,57 @@ class ConsoleUtils {
         scrollUp(2);
         clearScreen();
         scrollUp(1);
+    }
+    
+    // Safe integer input with validation
+    public static int getValidIntInput(Scanner sc, String prompt, int min, int max) throws InterruptedException {
+        int input = 0;
+        boolean valid = false;
+        
+        while (!valid) {
+            System.out.print(prompt);
+            String userInput = sc.next();
+            
+            try {
+                input = Integer.parseInt(userInput);
+                if (input >= min && input <= max) {
+                    valid = true;
+                } else {
+                    printInBox("[!] Please enter a number between " + min + " and " + max + "!", RED);
+                    Thread.sleep(1000);
+                }
+            } catch (NumberFormatException e) {
+                printInBox("[!] Invalid input! Please enter a valid number!", RED);
+                Thread.sleep(1000);
+            }
+        }
+        return input;
+    }
+    
+    // Safe string input
+    public static String getValidStringInput(Scanner sc, String prompt) {
+        System.out.print(prompt);
+        return sc.next();
+    }
+    
+    // Password validation - must be exactly 6 digits
+    public static String getValidPassword(Scanner sc, String prompt) throws InterruptedException {
+        String password;
+        boolean valid = false;
+        
+        while (!valid) {
+            System.out.print(prompt);
+            password = sc.next();
+            
+            if (password.length() == 6 && password.matches("\\d+")) {
+                valid = true;
+                return password;
+            } else {
+                printInBox("[!] Password must be exactly 6 digits (0-9 only)!", RED);
+                Thread.sleep(1000);
+            }
+        }
+        return "";
     }
 }
 
@@ -218,6 +284,16 @@ public class QuizSystem {
     static ArrayList<User> users = new ArrayList<>();
     static User currentUser = null;
 
+    // Check if user already exists
+    static boolean isUserExists(String username) {
+        for (User user : users) {
+            if (user.username.equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // ---------------- SIGNUP ----------------
     static void signup() throws InterruptedException {
         ConsoleUtils.clearAndScroll();
@@ -225,12 +301,20 @@ public class QuizSystem {
         
         ConsoleUtils.printCenteredWithBorder(ConsoleUtils.GREEN + "Create New Account" + ConsoleUtils.RESET);
         
-        System.out.print(ConsoleUtils.CYAN + "+--------------------------------------------------+\n" +
+        String u = ConsoleUtils.getValidStringInput(sc, ConsoleUtils.CYAN + "+--------------------------------------------------+\n" +
                          "| Enter Username: " + ConsoleUtils.RESET);
-        String u = sc.next();
         
-        System.out.print(ConsoleUtils.CYAN + "| Enter Password: " + ConsoleUtils.RESET);
-        String p = sc.next();
+        // Check if user already exists
+        if (isUserExists(u)) {
+            ConsoleUtils.printInBox("[X] User already exists! Please try a different username.", ConsoleUtils.RED);
+            ConsoleUtils.pressAnyKey(sc);
+            return;
+        }
+        
+        String p = ConsoleUtils.getValidPassword(sc, ConsoleUtils.CYAN + "| Enter Password (6 digits): " + ConsoleUtils.RESET);
+        
+        // Show loader
+        ConsoleUtils.showLoader("Creating account", 1500);
         
         users.add(new User(u, p));
         
@@ -245,13 +329,13 @@ public class QuizSystem {
         
         ConsoleUtils.printCenteredWithBorder(ConsoleUtils.YELLOW + "Welcome Back!" + ConsoleUtils.RESET);
         
-        System.out.print(ConsoleUtils.CYAN + "+--------------------------------------------------+\n" +
+        String u = ConsoleUtils.getValidStringInput(sc, ConsoleUtils.CYAN + "+--------------------------------------------------+\n" +
                          "| Username: " + ConsoleUtils.RESET);
-        String u = sc.next();
         
-        System.out.print(ConsoleUtils.CYAN + "| Password: " + ConsoleUtils.RESET);
-        String p = sc.next();
+        String p = ConsoleUtils.getValidStringInput(sc, ConsoleUtils.CYAN + "| Password: " + ConsoleUtils.RESET);
 
+        ConsoleUtils.showLoader("Verifying credentials", 1000);
+        
         for (User user : users) {
             if (user.username.equals(u) && user.password.equals(p)) {
                 currentUser = user;
@@ -276,8 +360,9 @@ public class QuizSystem {
         
         ConsoleUtils.printInBox("Your OTP: " + otp, ConsoleUtils.YELLOW);
         
-        System.out.print(ConsoleUtils.CYAN + "Enter OTP: " + ConsoleUtils.RESET);
-        int uotp = sc.nextInt();
+        ConsoleUtils.showLoader("Generating OTP", 1500);
+        
+        int uotp = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.CYAN + "Enter OTP: " + ConsoleUtils.RESET, 1000, 9999);
 
         if (otp == uotp) {
             ConsoleUtils.printInBox("[+] OTP Verified!", ConsoleUtils.GREEN);
@@ -352,7 +437,9 @@ public class QuizSystem {
         ConsoleUtils.printHeader("SUBJECT SELECTION");
         
         project.intro();
-        int ch = sc.nextInt();
+        int ch = ConsoleUtils.getValidIntInput(sc, "", 1, 3);
+        
+        ConsoleUtils.showLoader("Loading questions", 1500);
         
         ArrayList<Question> questions = new ArrayList<>();
         
@@ -442,8 +529,7 @@ public class QuizSystem {
             }
             
             long start = System.currentTimeMillis();
-            System.out.print(ConsoleUtils.GREEN + "[?] Your Answer (0 to skip): " + ConsoleUtils.RESET);
-            String ans = sc.next();
+            String ans = ConsoleUtils.getValidStringInput(sc, ConsoleUtils.GREEN + "[?] Your Answer (0 to skip): " + ConsoleUtils.RESET);
             long end = System.currentTimeMillis();
             int spent = (int)((end - start) / 1000);
             a.timeSpent += spent;
@@ -471,7 +557,7 @@ public class QuizSystem {
                 System.out.println(ConsoleUtils.YELLOW + line + ConsoleUtils.RESET);
             }
             
-            int choice = sc.nextInt();
+            int choice = ConsoleUtils.getValidIntInput(sc, "", 1, 6);
             
             switch(choice) {
                 case 1: // Next
@@ -493,16 +579,10 @@ public class QuizSystem {
                     break;
                     
                 case 3: // Jump
-                    System.out.print(ConsoleUtils.CYAN + "Jump to question number (1-" + n + "): " + ConsoleUtils.RESET);
-                    int jump = sc.nextInt();
-                    if (jump >= 1 && jump <= n) {
-                        current = jump - 1;
-                        ConsoleUtils.printInBox("[+] Jumped to Question " + jump, ConsoleUtils.GREEN);
-                        Thread.sleep(800);
-                    } else {
-                        ConsoleUtils.printInBox("[X] Invalid question number!", ConsoleUtils.RED);
-                        Thread.sleep(800);
-                    }
+                    int jump = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.CYAN + "Jump to question number (1-" + n + "): " + ConsoleUtils.RESET, 1, n);
+                    current = jump - 1;
+                    ConsoleUtils.printInBox("[+] Jumped to Question " + jump, ConsoleUtils.GREEN);
+                    Thread.sleep(800);
                     break;
                     
                 case 4: // Mark
@@ -520,6 +600,7 @@ public class QuizSystem {
                     System.out.print(ConsoleUtils.GREEN + "Submit? (y/n): " + ConsoleUtils.RESET);
                     String confirm = sc.next();
                     if (confirm.equalsIgnoreCase("y")) {
+                        ConsoleUtils.showLoader("Submitting quiz", 1000);
                         quizCompleted = true;
                     }
                     break;
@@ -592,7 +673,30 @@ public class QuizSystem {
         ConsoleUtils.clearAndScroll();
         ConsoleUtils.printHeader("LEADERBOARD");
         
-        users.sort((a, b) -> Integer.compare(b.score, a.score));
+        // Show only unique users who have attempted the quiz
+        ArrayList<User> uniqueUsers = new ArrayList<>();
+        for (User u : users) {
+            boolean alreadyAdded = false;
+            for (User unique : uniqueUsers) {
+                if (unique.username.equals(u.username)) {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+            // Only add users who have attempted the quiz
+            if (!alreadyAdded && u.attempted) {
+                uniqueUsers.add(u);
+            }
+        }
+        
+        if (uniqueUsers.isEmpty()) {
+            ConsoleUtils.printInBox("[!] No quiz attempts yet!", ConsoleUtils.YELLOW);
+            ConsoleUtils.pressAnyKey(sc);
+            return;
+        }
+        
+        // Sort by score
+        uniqueUsers.sort((a, b) -> Integer.compare(b.score, a.score));
         
         System.out.println(ConsoleUtils.CYAN +
             "+--------------------------------------------------+\n" +
@@ -600,7 +704,7 @@ public class QuizSystem {
             "+--------------------------------------------------+" + ConsoleUtils.RESET);
         
         int rank = 1;
-        for (User u : users) {
+        for (User u : uniqueUsers) {
             if (rank <= 10) {
                 System.out.printf(ConsoleUtils.YELLOW + "|  %-4d |  %-16s |      %-8d     |\n" + ConsoleUtils.RESET, rank, u.username, u.score);
             }
@@ -629,8 +733,7 @@ public class QuizSystem {
                 "+--------------------------------------------------+";
             
             ConsoleUtils.printInBox(menuBox, ConsoleUtils.CYAN);
-            System.out.print(ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET);
-            int ch = sc.nextInt();
+            int ch = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET, 1, 5);
             
             if (ch == 1) startQuiz();
             else if (ch == 2) showResult();
@@ -646,8 +749,7 @@ public class QuizSystem {
             ConsoleUtils.printHeader("LEARNING MANAGEMENT SYSTEM");
             project.learn();
             
-            System.out.print(ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET);
-            int ch = sc.nextInt();
+            int ch = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET, 1, 3);
             
             if (ch == 1) {
                 hand.subjectMenu();
@@ -656,9 +758,6 @@ public class QuizSystem {
             } else if (ch == 3) {
                 currentUser = null;
                 break;
-            } else {
-                ConsoleUtils.printInBox("[X] Invalid Choice!", ConsoleUtils.RED);
-                Thread.sleep(1000);
             }
         }
     }
@@ -669,8 +768,7 @@ public class QuizSystem {
             ConsoleUtils.printHeader("WELCOME TO QUIZ SYSTEM");
             project.banner1();
             
-            System.out.print(ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET);
-            int ch = sc.nextInt();
+            int ch = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET, 1, 3);
             
             if (ch == 1) signup();
             else if (ch == 2 && login()) mainMenu();
