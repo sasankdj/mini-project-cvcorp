@@ -1,0 +1,99 @@
+What is Python?
+A. Programming Language  B. Snake Species  C. Operating System  D. Browser
+A
+
+Who developed Python?
+A. Dennis Ritchie  B. Guido van Rossum  C. James Gosling  D. Bjarne Stroustrup
+B
+
+Which symbol is used for comments in Python?
+A. //  B. <!-- -->  C. #  D. **
+C
+
+Which keyword is used to define a function in Python?
+A. function  B. def  C. define  D. func
+B
+
+Which data type is immutable?
+A. List  B. Dictionary  C. Set  D. Tuple
+D
+
+What is the output of: print(type(10))?
+A. int  B. <class 'int'>  C. integer  D. number
+B
+
+Which operator is used for exponentiation?
+A. ^  B. **  C. //  D. %%
+B
+
+Which keyword is used for conditional statements?
+A. if  B. when  C. switch  D. case
+A
+
+Which loop is used to iterate over a sequence?
+A. while  B. loop  C. for  D. repeat
+C
+
+Which function is used to get user input?
+A. scan()  B. input()  C. get()  D. read()
+B
+
+Which of these is used to store key-value pairs?
+A. List  B. Tuple  C. Dictionary  D. Set
+C
+
+Which keyword is used to create a class?
+A. define  B. object  C. class  D. new
+C
+
+Which method is called when an object is created?
+A. __start__  B. __init__  C. __create__  D. __newobject__
+B
+
+Which keyword is used to inherit a class?
+A. extends  B. inherits  C. class  D. Parent class in brackets
+D
+
+What is the correct file extension for Python files?
+A. .pt  B. .pyt  C. .py  D. .python
+C
+
+Which function gives the length of a list?
+A. size()  B. count()  C. length()  D. len()
+D
+
+Which statement is used to handle exceptions?
+A. try-except  B. catch-try  C. final  D. error
+A
+
+Which keyword is used to import modules?
+A. include  B. import  C. using  D. require
+B
+
+Which of these is not a Python data type?
+A. list  B. tuple  C. array  D. set
+C
+
+What is the output of: print(5 // 2)?
+A. 2.5  B. 2  C. 3  D. 2.0
+B
+
+Which function converts a string to integer?
+A. str()  B. float()  C. int()  D. chr()
+C
+
+Which collection allows duplicate values?
+A. Set  B. Dictionary Keys  C. List  D. Frozen Set
+C
+
+Which keyword is used to exit a loop?
+A. stop  B. break  C. exit  D. return
+B
+
+Which keyword is used to skip an iteration?
+A. continue  B. skip  C. next  D. passloop
+A
+
+Which library is commonly used for data analysis?
+A. pygame  B. pandas  C. turtle  D. flask
+B

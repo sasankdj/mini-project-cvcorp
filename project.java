@@ -241,8 +241,11 @@ RESET
     public static void intro(){
         
 String CYAN = "\u001B[36m";
-        String GREEN = "\u001B[32m";
-        // String RESET = "\u001B[0m";
+       
+    final String RED = "\u001B[31m";
+    final String GREEN = "\u001B[32m";
+    final String YELLOW = "\u001B[33m";
+    final String BLUE = "\u001B[34m";
 
         String RESET = "\u001B[0m";
          
@@ -258,37 +261,38 @@ String CYAN = "\u001B[36m";
         "                                                                 |__/               \n" +
         RESET
     );
-        System.out.print(
+        // Section 1
+    System.out.println(RED +
+            "  __         __   __   _  _   __                         \n" +
+            " /  \\      _(  ) / _\\ / )( \\ / _\\                        \n" +
+            "(_/ / _   / \\) \\/    \\\\ \\/ //    \\                       \n" +
+            " (__)(_)  \\____/\\_/\\_/ \\__/ \\_/\\_/                       "
+            + RESET);
 
-"\u001B[35m  __          _                                      \n" +
-"\u001B[35m /_ |        | |                                     \n" +
+    // Section 2
+    System.out.println(GREEN +
+            " ____       ____  _  _  ____  _  _   __   __ _           \n" +
+            "(___ \\     (  _ \\( \\/ )(_  _)/ )( \\ /  \\ (  ( \\          \n" +
+            " / __/ _    ) __/ )  /   )(  ) __ ((  O )/    /          \n" +
+            "(____)(_)  (__)  (__/   (__) \\_)(_/ \\__/ \\_)__)         "
+            + RESET);
 
-"\u001B[34m  | |        | | __ ___   ____ _                     \n" +
-"\u001B[34m  | |    _   | |/ _` \\ \\ / / _` |                    \n" +
+    // Section 3
+    System.out.println(YELLOW +
+            " ____        __   ____  ____  __  ____  _  _  ____  ____ \n" +
+            "( __ \\      / _\\ (  _ \\(_  _)(  )(_  _)/ )( \\(    \\(  __)\n" +
+            " (__ ( _   /    \\ ) __/  )(   )(   )(  ) \\/ ( ) D ( ) _) \n" +
+            "(____/(_)  \\_/\\_/(__)   (__) (__) (__) \\____/(____/(____)"
+            + RESET);
 
-"\u001B[36m  | |_  | |__| | (_| |\\ V / (_| |                    \n" +
-"\u001B[36m  |_(_)  \\____/_\\__,_| \\_/ \\__,_|                    \n" +
+    // Section 4
+    System.out.println(BLUE +
+            "  ___       ____  _  _  __  ____                         \n" +
+            " / _ \\     (  __)( \\/ )(  )(_  _)                        \n" +
+            "(__  ( _    ) _)  )  (  )(   )(                          \n" +
+            "  (__/(_)  (____)(_/_\\_)(__) (__)                        "
+            + RESET);
 
-"\u001B[32m |__ \\    |  __ \\     | | | |                        \n" +
-"\u001B[32m    ) |   | |__) |   _| |_| |__   ___  _ __          \n" +
-
-"\u001B[33m   / /    |  ___/ | | | __| '_ \\ / _ \\| '_ \\         \n" +
-"\u001B[33m  / /_ _  | |   | |_| | |_| | | | (_) | | | |        \n" +
-
-"\u001B[31m |____(_) |_|    \\__, |\\__|_| |_|\\___/|_| |_| _      \n" +
-"\u001B[31m |___ \\       /\\  __/ |  | | (_) |           | |     \n" +
-
-"\u001B[35m   __) |     /  \\|___/__ | |_ _| |_ _   _  __| | ___ \n" +
-"\u001B[35m  |__ <     / /\\ \\ | '_ \\| __| | __| | | |/ _` |/ _ \\\n" +
-
-"\u001B[34m  ___) |   / ____ \\| |_) | |_| | |_| |_| | (_| |  __/\n" +
-"\u001B[34m |____(_) /_/    \\_\\ .__/ \\__|_|\\__|\\__,_|\\__,_|\\___|\n" +
-
-"\u001B[36m                   | |                               \n" +
-"\u001B[36m                   |_|                               \n" +
-
-RESET
-        );
         
     }
     public static void learn() {
@@ -335,74 +339,55 @@ RESET
     );
 }
 public static void QuizLoomAscii() {
+    // ANSI Color Codes
+    final String RESET = "\u001B[0m";
 
-    // ANSI escape codes
-    final String RESET   = "\u001B[0m";
+    final String BLACK = "\u001B[30m";
+    final String RED = "\u001B[31m";
+    final String GREEN = "\u001B[32m";
+    final String YELLOW = "\u001B[33m";
+    final String BLUE = "\u001B[34m";
+    final String PURPLE = "\u001B[35m";
+    final String CYAN = "\u001B[36m";
+    final String WHITE = "\u001B[37m";
 
-    // Gradient colors
-    final String DARK_BLUE   = "\u001B[38;2;10;15;90m";
-    final String PURPLE      = "\u001B[38;2;140;50;255m";
-    final String BLUE        = "\u001B[38;2;50;110;255m";
-    final String CYAN        = "\u001B[38;2;0;200;255m";
-    final String PINK        = "\u001B[38;2;255;0;180m";
-    final String ORANGE      = "\u001B[38;2;255;165;0m";
-    final String WHITE       = "\u001B[38;2;255;255;255m";
+    final String BRIGHT_BLUE = "\u001B[94m";
+    final String BRIGHT_PURPLE = "\u001B[95m";
+    final String BRIGHT_CYAN = "\u001B[96m";
+    final String BRIGHT_YELLOW = "\u001B[93m";
 
-    String ascii =
+    // Logo Symbol
+    System.out.println(BRIGHT_PURPLE + "                                                            mda0099990bj");
+    System.out.println(BRIGHT_PURPLE + "                                                         faaa0099988887766c");
+    System.out.println(BRIGHT_PURPLE + "                                                      yd009099998887776665557x");
+    System.out.println(BRIGHT_PURPLE + "                                                     m88888888jox  yok66555444j     x05e");
+    System.out.println(BRIGHT_BLUE +   "                                                    f777667d            b444333f   755i");
+    System.out.println(BRIGHT_BLUE +   "                                                   o665556     uXUUWu     422222f  xt");
+    System.out.println(BRIGHT_BLUE +   "                                                   554444s   wTTTTSSSSt   z111113");
+    System.out.println(BRIGHT_CYAN +   "                                                  l333334    cSTy  jRRj    8ZZZZZo  zjjlmny");
+    System.out.println(BRIGHT_CYAN +   "                                                  h222216        s2RQQ     dZZZZZo  zpoprsz");
+    System.out.println(BRIGHT_CYAN +   "                                                  t111111       vQQYy      ZYYYYYr");
+    System.out.println(BRIGHT_YELLOW + "                                                   2ZZZYYe       uv       9XXXXX1  xqx");
+    System.out.println(BRIGHT_YELLOW + "                                                   zZYYYXX2     sPPp y0997YUVWWY   pcccr");
+    System.out.println(BRIGHT_BLUE +   "                                                    vXXXXWWW1y      z0988776YUUs     wff");
+    System.out.println(BRIGHT_BLUE +   "                                                      3XWWWWVVVUTTTRPZ87766544f");
+    System.out.println(BRIGHT_PURPLE + "                                                       vYWVVVVUUUUTRPONV65443322d");
+    System.out.println(BRIGHT_PURPLE + "                                                          kXUVVUUTTSRQPNQf5322211m");
+    System.out.println(BRIGHT_PURPLE + "                                                              rmgccfkq     p31111w");
+    System.out.println(WHITE +         "                                                                              y");
 
+    // QUIZLOOM Text
+    System.out.println(BLUE +          "                             kQFFFRl               dFHy           cas");
+    System.out.println(BLUE +          "                           KFFGMRMGFFZ              U5            22m");
+    System.out.println(BLUE +          "                          NFG      rFFL  KJs   JJZ qJK  PJJJJJJc  11m        y42229     z3333a   v42 533f g335q");
+    System.out.println(PURPLE +       "                         oFFi       9FFl FFm   FFR mFGy okllJFFp  ZZm       3ZZiw0ZZe  41Zgx011d u211qo2116ue22c");
+    System.out.println(PURPLE +       "                         uFF0    bl TFGo FFn   FFR mFGy   vKFY    YYl      gY1    vZ1yjZ3    wZ1zu21z  h11   422");
+    System.out.println(BRIGHT_PURPLE +"                          1EF2  sMFFFFY  GFc  rFFR mFGy  VFIq     XXk      pXXz   bY3 rYYx   eZ2 t1Z   h11   422");
+    System.out.println(BRIGHT_BLUE +  "                           lKFFFFFFEEJq  XFFFFFFFR mFGyrHFFFFGFL  WWWWWWWWw fXXXXWX1x  iYYYYYY1w tZZz  h11   422");
+    System.out.println(CYAN +          "                              zb2b  kIF4   l0x  z   z    zzzzzz                ohw        qiv");
 
-PURPLE +
-"                                                     :;+xxxxx+;.                                                         \n" +
-"                                                  +xxxxxxxxxxxxxxx:                                                      \n" +
-"                                                +xxxxxxxxxxxxxxxxxxx:                                                    \n" +
-"                                              .xxxxxxx+.     .+xxxxxx+   " + PINK + ".;xx;                                           \n" +
-
-PURPLE +
-"                                             .xxxxxx.           +xxxxxx  " + PINK + "xx;.                                            \n" +
-
-CYAN +
-"                                             xxxxxx    XXX$$X+   :xXXXX:                                                 \n" +
-"                                            :XXXXX.   X$X  +$$.   xXXXXX   " + CYAN + ".:::.                                         \n" +
-"                                            ;XXXXX.       ;X$X    ;XXXXX  " + CYAN + ".;;;;:                                         \n" +
-"                                            :XXXXX.      $$X:     XXXXXx                                                 \n" +
-
-BLUE +
-"                                             xXXXXX.     .;      ;XXXXX: .;:                                             \n" +
-"                                             .XXXXXX;    $$; ++xxxXXXXx  " + ORANGE + ".+++;                                           \n" +
-"                                               xXXXXXXx:....:xxxxxxxX+      ..                                           \n" +
-
-PURPLE +
-"                                                ;XXXXXXXXXX$$$Xxxxxxxx;                                                  \n" +
-"                                                  :XXXXXXXX$$$$$Xxxxxxxx                                                 \n" +
-"                                                      :xXXXXX+.   ;xxxxx                                                 \n" +
-
-WHITE +
-"                                                                    .:                                                   \n" +
-
-CYAN +
-"                         ;X&&&$x.            x&&          xx;                                                            \n" +
-"                       ;&&&;::$&&X            :.          xX;                                                            \n" +
-
-CYAN +
-"                      .&&+     .&&x &&:  +&$ ;&$ +&&&&&&: XX;      " + PURPLE + ".XXXXXx   :XXXXX+  xXxXXXxxxxxx.                      \n" +
-
-CYAN +
-"                      ;&&       X&$ &&:  +&$ ;&&    +&&:  XX;     " + PURPLE + ".XX:  ;XX.;XX.  +Xx xX+  xx+  +xx                      \n" +
-
-CYAN +
-"                       $&$. :&&X&&: &&:  +&$ ;&&  .$&X    XX;     " + PURPLE + ";XX   .XX:+Xx   .XX xX;  +x+  ;xx                      \n" +
-
-CYAN +
-"                       .X&&&$$&&&x  x&&$$&&$ ;&& X&&$XXX; XXXXXXXx " + BLUE + "xXXxxXX+ .XXxxxXX: xX;  +x+  ;xx                      \n" +
-
-CYAN +
-"                          .+Xx. X&&.  +x. :. .:. .::::::  ........   .+;.      :+;    ...  ...  ...                      \n" +
-
-
-
-RESET;
-
-    System.out.println(ascii);
+    // Footer
+    System.out.println("\n" + BRIGHT_YELLOW + "                                                QUIZLOOM - Learn, Play, Grow!" + RESET);
 }
 }
 

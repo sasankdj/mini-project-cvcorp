@@ -1,6 +1,7 @@
 package p1;
 
 import java.util.*;
+import java.io.*;
 
 // ANSI Color and Console Utility Class
 class ConsoleUtils {
@@ -233,7 +234,7 @@ class ConsoleUtils {
             System.out.print(prompt);
             password = sc.next();
             
-            if (password.length() == 6 && password.matches("\\d+")) {
+            if (password.length() == 6) {
                 valid = true;
                 return password;
             } else {
@@ -245,17 +246,61 @@ class ConsoleUtils {
     }
 }
 
+class SubjectResult {
+    String subject;
+    int score;
+    int timeTaken;
+    boolean attempted;
+
+    SubjectResult(String subject) {
+        this.subject = subject;
+        this.score = 0;
+        this.timeTaken = 0;
+        this.attempted = false;
+    }
+}
 class User {
     String username;
     String password;
-    int score;
-    boolean attempted;
+    ArrayList<SubjectResult> results;
 
     User(String u, String p) {
         username = u;
         password = p;
-        score = 0;
-        attempted = false;
+        results = new ArrayList<>();
+        
+        // Initialize results for 3 subjects
+        results.add(new SubjectResult("Java"));
+        results.add(new SubjectResult("Python"));
+        results.add(new SubjectResult("Aptitude"));
+    }
+    
+    // Helper method to get result by subject name
+    SubjectResult getResult(String subject) {
+        for (SubjectResult sr : results) {
+            if (sr.subject.equals(subject)) {
+                return sr;
+            }
+        }
+        return null;
+    }
+}
+
+class QuizResult {
+    String username;
+    String subject;
+    int score;
+    int totalQuestions;
+    int timeTaken; // in seconds
+    String date;
+    
+    QuizResult(String u, String s, int sc, int total, int time) {
+        username = u;
+        subject = s;
+        score = sc;
+        totalQuestions = total;
+        timeTaken = time;
+        date = new Date().toString();
     }
 }
 
@@ -282,6 +327,7 @@ public class QuizSystem {
 
     static Scanner sc = new Scanner(System.in);
     static ArrayList<User> users = new ArrayList<>();
+    static ArrayList<QuizResult> allResults = new ArrayList<>();
     static User currentUser = null;
 
     // Check if user already exists
@@ -292,6 +338,42 @@ public class QuizSystem {
             }
         }
         return false;
+    }
+
+    // Load questions from file
+    static ArrayList<Question> loadQuestionsFromFile(String filename) {
+        ArrayList<Question> questions = new ArrayList<>();
+        
+        try {
+            File file = new File(filename);
+            Scanner fileScanner = new Scanner(file);
+            
+            while (fileScanner.hasNextLine()) {
+                String question = fileScanner.nextLine();
+                if (question.isEmpty()) continue;
+                
+                String options = fileScanner.nextLine();
+                String correct = fileScanner.nextLine();
+                
+                questions.add(new Question(question, options, correct));
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            ConsoleUtils.printInBox("[!] Question file not found! Using default questions.", ConsoleUtils.YELLOW);
+            // Default questions if file not found
+            questions.add(new Question("What is Java?", "A. Language  B. OS  C. Browser  D. Hardware", "A"));
+            questions.add(new Question("What is the size of int in Java?", "A. 2 bytes  B. 4 bytes  C. 8 bytes  D. 16 bytes", "B"));
+            questions.add(new Question("What does OOP stand for?", "A. Object Oriented Programming  B. Other Programming", "A"));
+        }
+        
+        return questions;
+    }
+
+    // Get subject name based on choice
+    static String getSubjectName(int ch) {
+        if (ch == 1) return "Java";
+        else if (ch == 2) return "Python";
+        else return "Aptitude";
     }
 
     // ---------------- SIGNUP ----------------
@@ -356,11 +438,12 @@ public class QuizSystem {
         ConsoleUtils.clearAndScroll();
         ConsoleUtils.printHeader("OTP VERIFICATION");
         
+        // Show loader first
+        ConsoleUtils.showLoader("Generating OTP", 1500);
+        
         int otp = 1000 + (int) (Math.random() * 9000);
         
         ConsoleUtils.printInBox("Your OTP: " + otp, ConsoleUtils.YELLOW);
-        
-        ConsoleUtils.showLoader("Generating OTP", 1500);
         
         int uotp = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.CYAN + "Enter OTP: " + ConsoleUtils.RESET, 1000, 9999);
 
@@ -373,6 +456,63 @@ public class QuizSystem {
         }
     }
 
+    // ---------------- PROFILE ----------------
+static void showProfile() throws InterruptedException {
+    ConsoleUtils.clearAndScroll();
+    ConsoleUtils.printHeader("USER PROFILE");
+    
+    String profileBox = 
+        "+--------------------------------------------------+\n" +
+        "|              PROFILE DETAILS                     |\n" +
+        "+--------------------------------------------------+\n" +
+        String.format("|Username    : %-36s|\n", currentUser.username) +
+        "|                                                  |\n" +
+        "+--------------------------------------------------+\n";
+    
+    ConsoleUtils.printInBox(profileBox, ConsoleUtils.CYAN);
+    System.out.println(ConsoleUtils.YELLOW+" SUBJECT PERFORMANCE    ");
+    System.out.println(ConsoleUtils.YELLOW + "\n+----------------+----------+----------------+" + ConsoleUtils.RESET);
+    System.out.printf(ConsoleUtils.YELLOW + "| %-12s | %-6s | %-13s |\n" + ConsoleUtils.RESET, "Subject", "Score", "Time Taken");
+    System.out.println(ConsoleUtils.YELLOW + "+----------------+----------+----------------+" + ConsoleUtils.RESET);
+    
+    for (SubjectResult sr : currentUser.results) {
+        if (sr.attempted) {
+            int minutes = sr.timeTaken / 60;
+            int seconds = sr.timeTaken % 60;
+            String timeStr = String.format("%d min %d sec", minutes, seconds);
+            System.out.printf("| %-12s |    %-3d   | %-13s |\n", sr.subject, sr.score, timeStr);
+        } else {
+            System.out.printf("| %-12s |  %-6s | %-13s |\n", sr.subject, "Not Taken", "-");
+        }
+    }
+    System.out.println(ConsoleUtils.YELLOW + "+----------------+----------+----------------+" + ConsoleUtils.RESET);
+    
+    // Calculate total performance
+    int totalScore = 0;
+    int totalAttempts = 0;
+    int totalTime = 0;
+    
+    for (SubjectResult sr : currentUser.results) {
+        if (sr.attempted) {
+            totalScore += sr.score;
+            totalAttempts++;
+            totalTime += sr.timeTaken;
+        }
+    }
+    
+    if (totalAttempts > 0) {
+        int avgScore = totalScore / totalAttempts;
+        int avgTime = totalTime / totalAttempts;
+        int minutes = avgTime / 60;
+        int seconds = avgTime % 60;
+        
+        System.out.println(ConsoleUtils.GREEN + "\n+----------------+----------+----------------+" + ConsoleUtils.RESET);
+        System.out.printf(ConsoleUtils.GREEN + "| %-12s |    %-3d   | %-13s |\n" + ConsoleUtils.RESET, "AVERAGE", avgScore, String.format("%d min %d sec", minutes, seconds));
+        System.out.println(ConsoleUtils.GREEN + "+----------------+----------+----------------+" + ConsoleUtils.RESET);
+    }
+    
+    ConsoleUtils.pressAnyKey(sc);
+}
     // ---------------- BEAUTIFUL QUESTION PALETTE ----------------
     static void showPalette(ArrayList<Attempt> attempts) throws InterruptedException {
         ConsoleUtils.clearAndScroll();
@@ -423,8 +563,24 @@ public class QuizSystem {
     static void startQuiz() throws InterruptedException {
         ConsoleUtils.clearAndScroll();
         
-        if (currentUser.attempted) {
-            ConsoleUtils.printInBox("[!] You have already attempted the quiz!", ConsoleUtils.YELLOW);
+        ConsoleUtils.printHeader("SUBJECT SELECTION");
+        
+        project.intro();
+        int ch = ConsoleUtils.getValidIntInput(sc, "", 1, 4);
+        
+        // Handle exit option
+        if (ch == 4) {
+            ConsoleUtils.printInBox("[+] Returning to main menu...", ConsoleUtils.YELLOW);
+            Thread.sleep(1000);
+            return;
+        }
+        
+        String subject = getSubjectName(ch);
+        
+        // Check if already attempted
+      SubjectResult userResult = currentUser.getResult(subject);
+if (userResult != null && userResult.attempted) {
+            ConsoleUtils.printInBox("[!] You have already attempted the " + subject + " quiz!", ConsoleUtils.YELLOW);
             ConsoleUtils.pressAnyKey(sc);
             return;
         }
@@ -433,28 +589,23 @@ public class QuizSystem {
             return;
         }
         
-        ConsoleUtils.clearAndScroll();
-        ConsoleUtils.printHeader("SUBJECT SELECTION");
-        
-        project.intro();
-        int ch = ConsoleUtils.getValidIntInput(sc, "", 1, 3);
-        
         ConsoleUtils.showLoader("Loading questions", 1500);
         
         ArrayList<Question> questions = new ArrayList<>();
         
+        // Load questions from text files based on subject choice
         if (ch == 1) {
-            questions.add(new Question("What is Java?", "A. Language  B. OS  C. Browser  D. Hardware", "A"));
-            questions.add(new Question("What is the size of int in Java?", "A. 2 bytes  B. 4 bytes  C. 8 bytes  D. 16 bytes", "B"));
-            questions.add(new Question("What does OOP stand for?", "A. Object Oriented Programming  B. Other Programming", "A"));
+            questions = loadQuestionsFromFile("java_questions.txt");
         } else if (ch == 2) {
-            questions.add(new Question("Who developed C language?", "A. Dennis Ritchie  B. James Gosling", "A"));
-            questions.add(new Question("C is which level language?", "A. Low Level  B. Middle Level  C. High Level", "B"));
-            questions.add(new Question("What is the extension of C file?", "A. .java  B. .c  C. .py", "B"));
+            questions = loadQuestionsFromFile("python_questions.txt");
         } else if (ch == 3) {
-            questions.add(new Question("2 + 2 = ?", "", "4"));
-            questions.add(new Question("5 x 3 = ?", "", "15"));
-            questions.add(new Question("10 / 2 = ?", "", "5"));
+            questions = loadQuestionsFromFile("aptitude_questions.txt");
+        }
+        
+        if (questions.isEmpty()) {
+            ConsoleUtils.printInBox("[!] No questions found for this subject!", ConsoleUtils.RED);
+            ConsoleUtils.pressAnyKey(sc);
+            return;
         }
         
         Collections.shuffle(questions);
@@ -535,7 +686,7 @@ public class QuizSystem {
             a.timeSpent += spent;
             
             if (!ans.equals("0")) {
-                a.answer = ans;
+                a.answer = ans.toUpperCase();
                 if (current == n - 1) {
                     ConsoleUtils.printInBox("[+] Answer recorded for last question!", ConsoleUtils.GREEN);
                     Thread.sleep(800);
@@ -611,10 +762,22 @@ public class QuizSystem {
             }
         }
         
-        currentUser.score = calculateScore(questions, attempts);
-        currentUser.attempted = true;
+        int totalQuizTime = (int)((System.currentTimeMillis() - examStart) / 1000);
+        int score = calculateScore(questions, attempts);
         
-        ConsoleUtils.printInBox("[+] Quiz Completed! Score: " + currentUser.score + "/" + n, ConsoleUtils.GREEN);
+        // Store results for the subject
+        SubjectResult result = currentUser.getResult(subject);
+if (result != null) {
+    result.score = score;
+    result.timeTaken = totalQuizTime;
+    result.attempted = true;
+}
+        
+        // Store in global results list for leaderboard
+        allResults.add(new QuizResult(currentUser.username, subject, score, n, totalQuizTime));
+        
+        ConsoleUtils.printInBox("[+] " + subject + " Quiz Completed! Score: " + score + "/" + n, ConsoleUtils.GREEN);
+        ConsoleUtils.printInBox("[+] Time Taken: " + (totalQuizTime/60) + " minutes " + (totalQuizTime%60) + " seconds", ConsoleUtils.CYAN);
         ConsoleUtils.pressAnyKey(sc);
     }
     
@@ -628,24 +791,132 @@ public class QuizSystem {
         return correct;
     }
     
+    // ---------------- SUBJECT WISE LEADERBOARD ----------------
+    static void leaderboard() throws InterruptedException {
+        ConsoleUtils.clearAndScroll();
+        ConsoleUtils.printHeader("SUBJECT SELECTION FOR LEADERBOARD");
+        
+        System.out.println(ConsoleUtils.CYAN + "+--------------------------------------------------+" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  1. Java Leaderboard                             |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  2. Python Leaderboard                           |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  3. Aptitude Leaderboard                         |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  4. Back to Main Menu                            |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.CYAN + "+--------------------------------------------------+" + ConsoleUtils.RESET);
+        
+        int ch = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET, 1, 4);
+        
+        if (ch == 4) return;
+        
+        String subject = getSubjectName(ch);
+        ConsoleUtils.showLoader("Loading " + subject + " leaderboard", 1000);
+        
+        ConsoleUtils.clearAndScroll();
+        ConsoleUtils.printHeader(subject.toUpperCase() + " LEADERBOARD");
+        
+        // Filter results for selected subject
+        ArrayList<QuizResult> subjectResults = new ArrayList<>();
+        for (QuizResult result : allResults) {
+            if (result.subject.equals(subject)) {
+                subjectResults.add(result);
+            }
+        }
+        
+        if (subjectResults.isEmpty()) {
+            ConsoleUtils.printInBox("[!] No attempts yet for " + subject + " quiz!", ConsoleUtils.YELLOW);
+            ConsoleUtils.pressAnyKey(sc);
+            return;
+        }
+        
+        // Sort by score (descending) and then by time (ascending)
+        subjectResults.sort((a, b) -> {
+            if (a.score != b.score) {
+                return Integer.compare(b.score, a.score);
+            } else {
+                return Integer.compare(a.timeTaken, b.timeTaken);
+            }
+        });
+        
+        System.out.println(ConsoleUtils.CYAN +
+            "+------------------------------------------------------------+\n" +
+            "|  Rank  |  Username          |  Score  |     Time Taken     |\n" +
+            "+------------------------------------------------------------+" + ConsoleUtils.RESET);
+        
+        int rank = 1;
+        for (QuizResult result : subjectResults) {
+            if (rank <= 10) {
+                int minutes = result.timeTaken / 60;
+                int seconds = result.timeTaken % 60;
+                String timeStr = String.format("%02d:%02d", minutes, seconds);
+                
+                System.out.printf(ConsoleUtils.YELLOW + "|  %-4d |  %-16s |   %-3d   |      %-8s      |\n" + ConsoleUtils.RESET, 
+                                rank, result.username, result.score, timeStr);
+            }
+            rank++;
+        }
+        
+        System.out.println(ConsoleUtils.CYAN + "+------------------------------------------------------------+" + ConsoleUtils.RESET);
+        
+        // Show current user's rank
+        int userRank = 1;
+        for (QuizResult result : subjectResults) {
+            if (result.username.equals(currentUser.username)) {
+                ConsoleUtils.printInBox("[+] Your Rank: " + userRank + " | Score: " + result.score + "/" + result.totalQuestions, ConsoleUtils.GREEN);
+                break;
+            }
+            userRank++;
+        }
+        
+        ConsoleUtils.pressAnyKey(sc);
+    }
+    
     // ---------------- RESULT ----------------
     static void showResult() throws InterruptedException {
         ConsoleUtils.clearAndScroll();
-        ConsoleUtils.printHeader("QUIZ RESULT");
+        ConsoleUtils.printHeader("SUBJECT SELECTION FOR RESULT");
         
-        int correct = currentUser.score;
-        int total = 3;
-        int wrong = total - correct;
-        double percent = (correct * 100.0) / total;
+        System.out.println(ConsoleUtils.CYAN + "+--------------------------------------------------+" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  1. Java Result                                |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  2. Python Result                              |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  3. Aptitude Result                            |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.YELLOW + "|  4. Back to Main Menu                          |" + ConsoleUtils.RESET);
+        System.out.println(ConsoleUtils.CYAN + "+--------------------------------------------------+" + ConsoleUtils.RESET);
+        
+        int ch = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET, 1, 4);
+        
+        if (ch == 4) return;
+        
+        String subject = getSubjectName(ch);
+        
+    SubjectResult existingResult = currentUser.getResult(subject);
+if (existingResult != null && existingResult.attempted) {
+            ConsoleUtils.printInBox("[!] You haven't attempted the " + subject + " quiz yet!", ConsoleUtils.RED);
+            ConsoleUtils.pressAnyKey(sc);
+            return;
+        }
+        
+        ConsoleUtils.clearAndScroll();
+        ConsoleUtils.printHeader(subject.toUpperCase() + " QUIZ RESULT");
+        
+        // int score = currentUser.subjectScores.get(subject);
+        SubjectResult result = currentUser.getResult(subject);
+int score = result.score;
+int timeTaken = result.timeTaken;
+        int total = 3; // Default total questions
+        // int timeTaken = currentUser.subjectTimes.get(subject);
+        int wrong = total - score;
+        double percent = (score * 100.0) / total;
+        int minutes = timeTaken / 60;
+        int seconds = timeTaken % 60;
         
         String resultBox = 
             "+--------------------------------------------------+\n" +
-            "|              QUIZ RESULT SUMMARY                 |\n" +
+            "|              " + subject.toUpperCase() + " QUIZ RESULT                   |\n" +
             "+--------------------------------------------------+\n" +
-            String.format("|  Score       : %d / %d %28s\n", correct, total, "|") +
-            String.format("|  Correct     : %d %34s\n", correct, "|") +
+            String.format("|  Score       : %d / %d %28s\n", score, total, "|") +
+            String.format("|  Correct     : %d %34s\n", score, "|") +
             String.format("|  Wrong       : %d %34s\n", wrong, "|") +
             String.format("|  Percentage  : %.2f%% %30s\n", percent, "|") +
+            String.format("|  Time Taken  : %d min %d sec %21s\n", minutes, seconds, "|") +
             "+--------------------------------------------------+";
         
         ConsoleUtils.printInBox(resultBox, ConsoleUtils.CYAN);
@@ -659,62 +930,6 @@ public class QuizSystem {
         ConsoleUtils.pressAnyKey(sc);
     }
     
-    static void evaluate(ArrayList<Question> questions, ArrayList<Attempt> attempts) throws InterruptedException {
-        int correct = 0, wrong = 0;
-        for (int i = 0; i < questions.size(); i++) {
-            if (attempts.get(i).answer.equalsIgnoreCase(questions.get(i).correct)) correct++;
-            else if (!attempts.get(i).answer.equals("")) wrong++;
-        }
-        currentUser.score = correct;
-        showResult();
-    }
-    
-    static void leaderboard() throws InterruptedException {
-        ConsoleUtils.clearAndScroll();
-        ConsoleUtils.printHeader("LEADERBOARD");
-        
-        // Show only unique users who have attempted the quiz
-        ArrayList<User> uniqueUsers = new ArrayList<>();
-        for (User u : users) {
-            boolean alreadyAdded = false;
-            for (User unique : uniqueUsers) {
-                if (unique.username.equals(u.username)) {
-                    alreadyAdded = true;
-                    break;
-                }
-            }
-            // Only add users who have attempted the quiz
-            if (!alreadyAdded && u.attempted) {
-                uniqueUsers.add(u);
-            }
-        }
-        
-        if (uniqueUsers.isEmpty()) {
-            ConsoleUtils.printInBox("[!] No quiz attempts yet!", ConsoleUtils.YELLOW);
-            ConsoleUtils.pressAnyKey(sc);
-            return;
-        }
-        
-        // Sort by score
-        uniqueUsers.sort((a, b) -> Integer.compare(b.score, a.score));
-        
-        System.out.println(ConsoleUtils.CYAN +
-            "+--------------------------------------------------+\n" +
-            "|  Rank  |  Username          |     Score          |\n" +
-            "+--------------------------------------------------+" + ConsoleUtils.RESET);
-        
-        int rank = 1;
-        for (User u : uniqueUsers) {
-            if (rank <= 10) {
-                System.out.printf(ConsoleUtils.YELLOW + "|  %-4d |  %-16s |      %-8d     |\n" + ConsoleUtils.RESET, rank, u.username, u.score);
-            }
-            rank++;
-        }
-        
-        System.out.println(ConsoleUtils.CYAN + "+--------------------------------------------------+" + ConsoleUtils.RESET);
-        ConsoleUtils.pressAnyKey(sc);
-    }
-    
     // ---------------- MENU ----------------
     public static void menu() throws InterruptedException {
         while (true) {
@@ -724,21 +939,23 @@ public class QuizSystem {
             String menuBox = 
                 "+--------------------------------------------------+\n" +
                 "|                                                  |\n" +
-                "|      1. [*] Take Quiz                           |\n" +
-                "|      2. [*] View Result                         |\n" +
-                "|      3. [*] Leaderboard                         |\n" +
-                "|      4. [*] Learning Resources                  |\n" +
-                "|      5. [*] Logout                              |\n" +
+                "|      1. [*] Take Quiz                            |\n" +
+                "|      2. [*] View Result                          |\n" +
+                "|      3. [*] Leaderboard                          |\n" +
+                "|      4. [*] My Profile                           |\n" +
+                "|      5. [*] Learning Resources                   |\n" +
+                "|      6. [*] Logout                               |\n" +
                 "|                                                  |\n" +
                 "+--------------------------------------------------+";
             
             ConsoleUtils.printInBox(menuBox, ConsoleUtils.CYAN);
-            int ch = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET, 1, 5);
+            int ch = ConsoleUtils.getValidIntInput(sc, ConsoleUtils.GREEN + "Enter your choice: " + ConsoleUtils.RESET, 1, 6);
             
             if (ch == 1) startQuiz();
             else if (ch == 2) showResult();
             else if (ch == 3) leaderboard();
-            else if (ch == 4) hand.subjectMenu();
+            else if (ch == 4) showProfile();
+            else if (ch == 5) hand.subjectMenu();
             else return;
         }
     }

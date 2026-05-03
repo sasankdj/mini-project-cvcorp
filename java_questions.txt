@@ -1,0 +1,99 @@
+What is JVM?
+A. Java Virtual Machine  B. Java Variable Method  C. Just Virtual Machine  D. Java Verified Mode
+A
+
+Which keyword is used to inherit a class in Java?
+A. implement  B. inherits  C. extends  D. super
+C
+
+Which method is the entry point of a Java program?
+A. start()  B. main()  C. run()  D. init()
+B
+
+What is the default value of boolean in Java?
+A. true  B. false  C. null  D. 0
+B
+
+Which of these is not a primitive data type in Java?
+A. int  B. float  C. String  D. char
+C
+
+What is the size of char in Java?
+A. 1 byte  B. 2 bytes  C. 4 bytes  D. 8 bytes
+B
+
+Which operator is used for comparison?
+A. =  B. ==  C. :=  D. !=>
+B
+
+Which loop is guaranteed to execute at least once?
+A. for  B. while  C. do-while  D. foreach
+C
+
+Which keyword is used to define a constant in Java?
+A. static  B. final  C. const  D. immutable
+B
+
+Which package is automatically imported in every Java program?
+A. java.io  B. java.util  C. java.lang  D. java.net
+C
+
+What does OOP stand for?
+A. Object Oriented Programming  B. Open Operational Program  C. Object Ordered Process  D. Optional Object Program
+A
+
+Which concept allows one method to have many forms?
+A. Inheritance  B. Encapsulation  C. Polymorphism  D. Abstraction
+C
+
+Which keyword is used to prevent inheritance?
+A. static  B. constant  C. final  D. private
+C
+
+Which exception occurs when dividing by zero?
+A. IOException  B. ArithmeticException  C. NullPointerException  D. NumberFormatException
+B
+
+Which block is always executed in exception handling?
+A. try  B. catch  C. throw  D. finally
+D
+
+Which collection does not allow duplicate elements?
+A. List  B. ArrayList  C. Set  D. Vector
+C
+
+Which class implements dynamic arrays in Java?
+A. HashSet  B. LinkedList  C. ArrayList  D. TreeSet
+C
+
+Which thread method is used to start a thread?
+A. execute()  B. init()  C. start()  D. runThread()
+C
+
+Which keyword is used to create a subclass interface implementation?
+A. extends  B. inherits  C. implements  D. instance
+C
+
+Which of these is used to take input from the user?
+A. System.out  B. Scanner  C. PrintWriter  D. Buffer
+B
+
+Which memory area stores objects in Java?
+A. Stack  B. Heap  C. Register  D. ROM
+B
+
+Which keyword refers to the current object?
+A. this  B. super  C. self  D. current
+A
+
+Which keyword refers to parent class object?
+A. parent  B. super  C. this  D. base
+B
+
+Which access modifier makes members accessible only within the same class?
+A. public  B. protected  C. private  D. default
+C
+
+Which of these supports multiple inheritance in Java?
+A. Classes  B. Abstract Classes  C. Interfaces  D. Objects
+C
