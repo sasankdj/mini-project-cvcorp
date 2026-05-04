@@ -112,6 +112,8 @@ public class hand {
         project.intro();
 
         int c = sc.nextInt();
+        if(c==4)
+            return;
         // printer(mainfile(c)); // topics
         topicsPrinter(c);
         int sub = sc.nextInt();
@@ -134,10 +136,16 @@ public class hand {
                 sc.nextLine();
             t = sc.nextLine();
             } else if (lms == 3) {
-               QuizSystem.menu();
+                try {
+                    
+                    QuizSystem.menu();
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
 
             } else if (lms == 4) {
-                subjectMenu();
+                // subjectMenu();
+                return;
             } else
                 // System.out.println("Invalid Input");
                 break;

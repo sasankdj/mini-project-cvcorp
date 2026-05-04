@@ -251,12 +251,14 @@ class SubjectResult {
     int score;
     int timeTaken;
     boolean attempted;
+     int totalQuestions;
 
     SubjectResult(String subject) {
         this.subject = subject;
         this.score = 0;
         this.timeTaken = 0;
         this.attempted = false;
+         this.totalQuestions = 0; 
     }
 }
 class User {
@@ -771,6 +773,7 @@ if (result != null) {
     result.score = score;
     result.timeTaken = totalQuizTime;
     result.attempted = true;
+     result.totalQuestions = n;
 }
         
         // Store in global results list for leaderboard
@@ -888,7 +891,7 @@ if (result != null) {
         String subject = getSubjectName(ch);
         
     SubjectResult existingResult = currentUser.getResult(subject);
-if (existingResult != null && existingResult.attempted) {
+if (existingResult == null || !existingResult.attempted) {
             ConsoleUtils.printInBox("[!] You haven't attempted the " + subject + " quiz yet!", ConsoleUtils.RED);
             ConsoleUtils.pressAnyKey(sc);
             return;
@@ -897,12 +900,16 @@ if (existingResult != null && existingResult.attempted) {
         ConsoleUtils.clearAndScroll();
         ConsoleUtils.printHeader(subject.toUpperCase() + " QUIZ RESULT");
         
-        // int score = currentUser.subjectScores.get(subject);
         SubjectResult result = currentUser.getResult(subject);
 int score = result.score;
 int timeTaken = result.timeTaken;
-        int total = 3; // Default total questions
-        // int timeTaken = currentUser.subjectTimes.get(subject);
+int total = 0; // Need to get actual total questions
+
+// Get actual total questions based on subject
+if (subject.equals("Java")) total = loadQuestionsFromFile("java_questions.txt").size();
+else if (subject.equals("Python")) total = loadQuestionsFromFile("python_questions.txt").size();
+else if (subject.equals("Aptitude")) total = loadQuestionsFromFile("aptitude_questions.txt").size();
+if (total == 0) total = 3; // fallback
         int wrong = total - score;
         double percent = (score * 100.0) / total;
         int minutes = timeTaken / 60;
